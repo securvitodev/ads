@@ -1,0 +1,87 @@
+function getNearestVehicle(player,distance)
+	local lastMinDis = distance-0.0001
+	local nearestVeh = false
+	local px,py,pz = getElementPosition(player)
+	local pint = getElementInterior(player)
+	local pdim = getElementDimension(player)
+    local vehicles = getElementsByType("vehicle")
+
+	for _, veh in pairs(vehicles) do
+		local vint,vdim = getElementInterior(veh),getElementDimension(veh)
+		if vint == pint and vdim == pdim then
+			local vx,vy,vz = getElementPosition(veh)
+			local dis = getDistanceBetweenPoints3D(px,py,pz,vx,vy,vz)
+			if dis < distance then
+				if dis < lastMinDis then 
+					lastMinDis = dis
+					nearestVeh = v
+				end
+			end
+		end
+	end
+	return nearestVeh
+end
+
+bindKey('K', 'down', setVehicleOpenState()
+    
+    local nearestVehicle = getNearestVehicle(source, 1)
+
+    local openedState = isVehicleLocked(nearestVehicle)
+
+    local playerVehicle = getPlayerOccupiedVehicle(source)
+
+    local inVeh = isPlayerInVehicle(source)
+
+    if not (openedState =~ true or false) then
+        
+        if inVeh then 
+            
+            if not openedState then 
+                setVehicleOpenState(playerVehicle, false)
+                setElementData('vehicle-opened', false)
+            
+            else 
+                setVehicleOpenState(playerVehicle, true)
+                setElementData('vehicle-opened', true)
+            end 
+        
+        else 
+            if not openedState then 
+                setVehicleOpenState(nearestVehicle, false)
+                setElementData('vehicle-opened', false)
+            
+            else 
+                setVehicleOpenState(nearestVehicle, true)
+                setElementData('vehicle-opened', true)
+            end 
+        end 
+    end
+end)
+
+bindKey('space', 'down', setVehicleOpenState()
+
+    local playerVehicle = getPlayerOccupiedVehicle(source)
+
+    local engineState = getVehicleEngineState(playerVehicle)
+
+    local inVeh = isPlayerInVehicle(source)
+
+    if not (engineState =~ true or false) then
+        
+        if getKeyState('J') then 
+            
+            if inVeh then 
+            
+                if not engineState then 
+                    setVehicleEngineState(playerVehicle, false)
+                   setElementData('vehicle-engine', false)
+            
+                else 
+                    setVehicleEngineState(playerVehicle, true)
+                    setElementData('vehicle-engine', true)
+                end 
+            end 
+        end 
+    end
+end)
+
