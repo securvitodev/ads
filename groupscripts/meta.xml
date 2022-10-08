@@ -1,0 +1,15 @@
+<!-- By : Vito, Server : MGS -->
+
+<meta>
+
+    <!-- Siren Scripts -->
+    <script src="siren/sirenC.lua" type="client" cache="false"/>
+    <script src="siren/sirenS.lua" type="server"/>
+    <script src="siren/sirenG.lua" type="shared" cache="false"/>
+
+    <!-- MDC Scripts -->
+
+    <!-- Files -->
+
+
+</meta>
