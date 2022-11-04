@@ -14,7 +14,7 @@ addEventHandler('onPlayerJoin', root, function()
                 
             for _, database in ipairs(result) do 
 
-                playerVehicles = createVehicle(database.vehicleModelID, database.posX, database.posY, database.posZ)
+                playerVehicles = createVehicle(result.vehicleModelID, result.posX, result.posY, result.posZ)
 
                 local playerInterior = getElementInterior()
 
