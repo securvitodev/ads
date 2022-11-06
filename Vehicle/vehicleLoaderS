@@ -68,7 +68,7 @@ addCommandHandler('makeveh', root, function(sourcePlayer, targetPlayer, vehicleM
 
                 setVehicleColor(createdVehicle, color1, color2, color3)
 
-                dbExec(connection, "INSERT INTO vehicles VALUES (ownerID, modelID, x, y, z, int, color1, color2, color3)", vehicleOwnerAccID, vehicleModelID, x, y, z, int, color1, color2, color3)
+                dbExec(connection, "INSERT INTO vehicles ownerID = ?, modelID = ?, x = ?, y = ?, z = ?, int = ?, color1 = ?, color2 = ?, color3 = ?", vehicleOwnerAccID, vehicleModelID, x, y, z, int, color1, color2, color3)
             end 
         end 
     end 
