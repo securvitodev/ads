@@ -6,7 +6,7 @@ addEventHandler('onPlayerJoin', root, function()
 
         local playerAccID = getPlayerAccountID(source)
         
-        local qh = dbQuery( connection, 'SELECT * FROM vehicles WHERE ownerID', playerAccID)
+        local qh = dbQuery( connection, 'SELECT * FROM vehicles WHERE ownerID = ?', playerAccID)
 
         local result = dbPoll(qh, 0)
         
@@ -16,9 +16,7 @@ addEventHandler('onPlayerJoin', root, function()
 
                 playerVehicles = createVehicle(result.vehicleModelID, result.posX, result.posY, result.posZ)
 
-                local playerInterior = getElementInterior()
-
-                setVehicleColor(playerVehicles, database.color1, database.color2, database.color3)
+                setVehicleColor(playerVehicles, result.color1, result.color2, result.color3)
 
             end 
         end 
@@ -28,7 +26,7 @@ end)
 addEventHandler('onPlayerQuit', root, function()
     local playerAccID = getPlayerAccountID(source)
         
-    local qh = dbQuery( connection, 'SELECT * FROM vehicles WHERE ownerID', playerAccID)
+    local qh = dbQuery( connection, 'SELECT * FROM vehicles WHERE ownerID = ?', playerAccID)
 
     local result = dbPoll(qh, 0)
         
@@ -42,7 +40,7 @@ addEventHandler('onPlayerQuit', root, function()
     
             local doorState = getElementData(playerVehicles, 'vehicle-doorstate')
     
-            dbExec(connection, "UPDATE vehicles SET VALUES(x, y, z, int, doorState)", x, y, z, int, doorState)
+            dbExec(connection, "UPDATE vehicles SET x = ?, y = ?, z = ?, int = ?, doorState = ?", x, y, z, int, doorState)
     
             destroyElement(playerVehicles)
 
