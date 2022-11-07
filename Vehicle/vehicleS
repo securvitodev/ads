@@ -58,7 +58,7 @@ bindKey('space', 'down', function()
 
     local inVeh = isPlayerInVehicle(source)
 
-    if not (engineState =~ true or false) then
+    if not (engineState ~= true or false) then
         
         if getKeyState('J') then 
             
